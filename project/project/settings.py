@@ -16,7 +16,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'portal',
+    'portal',
 ]
 
 MIDDLEWARE = [
@@ -84,8 +84,8 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AUTH_USER_MODEL = 'portal.CustomUser'
+AUTH_USER_MODEL = 'portal.CustomUser'
 
-# LOGIN_URL = 'portal:login'
-# LOGIN_REDIRECT_URL = 'portal:cabinet'
-# LOGOUT_REDIRECT_URL = 'portal:home'
+LOGIN_URL = 'portal:login'
+LOGIN_REDIRECT_URL = 'portal:cabinet'
+LOGOUT_REDIRECT_URL = 'portal:home'
