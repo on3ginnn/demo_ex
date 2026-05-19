@@ -1,30 +1,7 @@
-from django.db import models
-from django.core.validators import MinLengthValidator
-from django.contrib.auth.models import AbstractUser
-
-
-class CustomUser(AbstractUser):
-  username = models.CharField(
-    "логин",
-    validators=[
-      MinLengthValidator(6),
-    ],
-    unique=True,
-
-  )
-
-  fio = models.CharField("ФИО", max_length=100)
-
-  phone_number = models.CharField("номер телефона", max_length=15, validators=[MinLengthValidator(15)])
-
-
-class Course(models.Model):
-
-
 import re
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, MinLengthValidator
 from django.db import models
 
 _login_validator = RegexValidator(
