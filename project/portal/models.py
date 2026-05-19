@@ -75,9 +75,9 @@ class Application(models.Model):
         COMPLETED = 'completed', 'Обучение завершено'
 
     class PaymentMethod(models.TextChoices):
-        CARD = 'card', 'Банковская карта'
-        INVOICE = 'invoice', 'Счёт на оплату (юр. лицо)'
-        SBP = 'sbp', 'СБП / QR'
+        CARD = 'card', 'Оплата картой МИР'
+        INVOICE = 'invoice', 'Постоплата в офисе организации'
+        SBP = 'sbp', 'Предоплата по QR-коду'
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,

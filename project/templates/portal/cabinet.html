@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Личный кабинет — Учусь.рф{% endblock %}
 {% block page_title %}Личный кабинет{% endblock %}
@@ -13,6 +14,64 @@
       <a class="btn btn-outline-secondary btn-sm" href="{% url 'portal:home' %}">На главную</a>
     </div>
   </div>
+
+    <section class="mb-5">
+    <h2 class="h4 mb-3">Актуальные программы</h2>
+    <div id="mainCarousel" class="carousel slide shadow rounded overflow-hidden" data-bs-ride="carousel" data-bs-interval="3000">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Слайд 1"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Слайд 2"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2" aria-label="Слайд 3"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="3" aria-label="Слайд 4"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="ratio ratio-21x9">
+            <img src="{% static 'img/slider/slide1.jpg' %}" class="object-fit-cover w-100 h-100 position-absolute top-0 start-0" alt="Повышение квалификации">
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="mb-1">Повышение квалификации</h5>
+            <p class="small mb-0">Актуальные программы для специалистов</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="ratio ratio-21x9">
+            <img src="{% static 'img/slider/slide2.jpg' %}" class="object-fit-cover w-100 h-100 position-absolute top-0 start-0" alt="Переподготовка">
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="mb-1">Профессиональная переподготовка</h5>
+            <p class="small mb-0">Новая специальность дистанционно</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="ratio ratio-21x9">
+            <img src="{% static 'img/slider/slide3.jpg' %}" class="object-fit-cover w-100 h-100 position-absolute top-0 start-0" alt="Охрана труда">
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="mb-1">Охрана труда</h5>
+            <p class="small mb-0">Соответствие нормативным требованиям</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="ratio ratio-21x9">
+            <img src="{% static 'img/slider/slide4.jpg' %}" class="object-fit-cover w-100 h-100 position-absolute top-0 start-0" alt="Развитие компетенций">
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="mb-1">Развитие компетенций</h5>
+            <p class="small mb-0">Непрерывное профессиональное образование</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev" data-bs-toggle="tooltip" data-bs-placement="top" title="Назад">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Назад</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next" data-bs-toggle="tooltip" data-bs-placement="top" title="Вперёд">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Вперёд</span>
+      </button>
+    </div>
+  </section>
 
   <section class="card mb-4 shadow border">
     <div class="card-header bg-primary text-white">
@@ -80,7 +139,7 @@
         <h3 class="h6 mt-2 mb-2">Мои отзывы</h3>
         <ul class="list-group list-group-flush">
           {% for r in reviews %}
-            <li class="list-group-item px-0">
+            <li class="list-group-item px-0 bg-">
               <div class="fw-semibold">Заявка №{{ r.application_id }} — оценка {{ r.rating }}/5</div>
               <div class="small text-muted">{{ r.created_at|date:"d.m.Y H:i" }}</div>
               <p class="mb-0 mt-2">{{ r.text }}</p>
