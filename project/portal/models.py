@@ -115,6 +115,13 @@ class Application(models.Model):
         return f'Заявка #{self.pk} — {self.user.username}'
 
     @property
+    def next_status_code(self) -> str | None:
+        """Следующий статус по цепочке или None, если заявка уже завершена."""
+        from .services import ApplicationLifecycle
+
+        return ApplicationLifecycle.next_status(self.status)
+
+    @property
     def next_status_label(self) -> str | None:
         code = self.next_status_code
         if not code:
