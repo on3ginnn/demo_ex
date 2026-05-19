@@ -4,14 +4,14 @@ from .models import Application
 
 
 class ApplicationLifecycle:
-    _CHAIN: tuple[str, ...] = (
+    _CHAIN = (
         Application.Status.NEW.value,
         Application.Status.IN_PROGRESS.value,
         Application.Status.COMPLETED.value,
     )
 
     @classmethod
-    def next_status(cls, current: str) -> Optional[str]:
+    def next_status(cls, current):
         try:
             idx = cls._CHAIN.index(current)
         except ValueError:
@@ -21,7 +21,7 @@ class ApplicationLifecycle:
         return cls._CHAIN[idx + 1]
 
     @classmethod
-    def advance(cls, application: Application) -> Optional[str]:
+    def advance(cls, application):
         nxt = cls.next_status(application.status)
         if nxt is None:
             return None
@@ -30,7 +30,7 @@ class ApplicationLifecycle:
         return nxt
 
     @classmethod
-    def set_status(cls, application: Application, new_status: str) -> bool:
+    def set_status(cls, application, new_status):
         allowed = {s.value for s in Application.Status}
         if new_status not in allowed:
             return False

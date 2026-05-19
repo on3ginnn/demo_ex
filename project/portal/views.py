@@ -1,8 +1,7 @@
-"""Публичные страницы и личный кабинет слушателя."""
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, FormView, ListView, TemplateView
 
@@ -52,8 +51,6 @@ class PortalLoginView(LoginView):
 
 
 class CabinetView(LoginRequiredMixin, ListView):
-    """ЛК: история заявок и возможность оставить отзыв по завершённым без отзыва."""
-
     model = Application
     template_name = 'portal/cabinet.html'
     context_object_name = 'applications'
