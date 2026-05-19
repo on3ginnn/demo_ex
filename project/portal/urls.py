@@ -1,7 +1,7 @@
 from django.contrib.auth import views as auth_views
 from django.urls import path
 
-from . import views
+from . import views, views_staff
 
 app_name = 'portal'
 
@@ -17,5 +17,12 @@ urlpatterns = [
         views.ReviewCreateView.as_view(),
         name='review_create',
     ),
-
+    path('staff/login/', views_staff.StaffLoginView.as_view(), name='staff_login'),
+    path('staff/logout/', views_staff.StaffLogoutView.as_view(), name='staff_logout'),
+    path('staff/applications/', views_staff.StaffApplicationListView.as_view(), name='staff_dashboard'),
+    path(
+        'staff/applications/<int:pk>/advance/',
+        views_staff.staff_advance_application,
+        name='staff_advance',
+    ),
 ]
