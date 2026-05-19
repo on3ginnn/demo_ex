@@ -1,12 +1,26 @@
 @font-face {
   font-family: 'InterRegular';
-  src: url('/fonts/Roboto/static/Inter_18pt-Regular.ttf') format('ttf');
+  src: url('/fonts/Inter/static/Inter_18pt-Regular.ttf') format('ttf');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
   font-size: 16px;
 }
 
 html, body{
-  font-family: "InterRegular" serif;
+  font-family: "InterRegular" serif !important;
+  background-color: #ced4da !important;
+}
+
+
+.bg-primary{
+  background-color: #007bff !important;
+}
+
+.bg-primary-subtle{
+  background-color: #0d47a1 !important;
+  color: #ffffff;
+}
+
+.card{
+  background-color: #dee2e6 !important;
 }
