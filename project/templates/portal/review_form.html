@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Отзыв — Учусь.рф{% endblock %}
+{% block page_title %}Отзыв по заявке №{{ application.pk }}{% endblock %}
+{% block page_lead %}
+  <p class="lead text-muted mb-0">Курс: <strong>{{ application.course.title }}</strong> ({{ application.course.category.name }}).</p>
+{% endblock %}
+
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <div class="card shadow border-0">
+        <div class="card-header bg-primary text-white">
+          <h2 class="h5 mb-0">Ваш отзыв</h2>
+        </div>
+        <div class="card-body p-4">
+          <form method="post">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+              <div class="alert alert-danger">{% for e in form.non_field_errors %}{{ e }}{% endfor %}</div>
+            {% endif %}
+            {% for field in form %}
+              <div class="mb-3">
+                <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% for e in field.errors %}<div class="invalid-feedback d-block">{{ e }}</div>{% endfor %}
+              </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Сохранить отзыв</button>
+            <a class="btn btn-link" href="{% url 'portal:cabinet' %}">Назад</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

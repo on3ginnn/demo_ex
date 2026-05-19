@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Вход — Учусь.рф{% endblock %}
+{% block page_title %}Вход в систему{% endblock %}
+{% block page_lead %}
+  <p class="lead text-muted mb-0">Введите логин и пароль для доступа к личному кабинету.</p>
+{% endblock %}
+
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-5">
+      <div class="card shadow border-0">
+        <div class="card-header bg-primary text-white">
+          <h2 class="h5 mb-0">Авторизация</h2>
+        </div>
+        <div class="card-body p-4">
+          <form method="post" action="">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+              <div class="alert alert-danger">{% for e in form.non_field_errors %}{{ e }}{% endfor %}</div>
+            {% endif %}
+            {% for field in form %}
+              <div class="mb-3">
+                <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                  <div class="invalid-feedback d-block">{% for e in field.errors %}{{ e }}{% endfor %}</div>
+                {% endif %}
+              </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary w-100">Войти</button>
+          </form>
+        </div>
+      </div>
+      <p class="mt-3 small">
+        Ещё не зарегистрированы? <a href="{% url 'portal:register' %}">Регистрация</a>
+      </p>
+      <p class="small"><a href="{% url 'portal:home' %}">Назад</a> на главную</p>
+    </div>
+  </div>
+{% endblock %}

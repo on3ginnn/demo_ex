@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Главная — Учусь.рф{% endblock %}
+{% block page_title %}Централизованный портал ДПО{% endblock %}
+{% block page_lead %}
+  <p class="lead text-muted mb-0">Единая цифровая среда для записи на программы повышения квалификации, переподготовки и охраны труда.</p>
+{% endblock %}
+
+{% block content %}
+  <section class="mb-5">
+    <div class="bg-primary-subtle rounded-3 p-4 mb-4">
+      <p class="lead mb-0">«Учусь.рф» объединяет направления ДПО в одном портале: от выбора программы до отслеживания статуса заявки в личном кабинете.</p>
+    </div>
+    <h2 class="h4 mb-3">Направления платформы</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-3">
+      <div class="col">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body">
+            <p class="text-primary mb-2"><i class="fa fa-line-chart fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="Повышение квалификации"></i></p>
+            <h3 class="card-title h5">Повышение квалификации</h3>
+            <p class="card-text small text-muted mb-0">Краткосрочные программы для актуализации профессиональных навыков и соответствия требованиям отрасли.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body">
+            <p class="text-primary mb-2"><i class="fa fa-book fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="Профессиональная переподготовка"></i></p>
+            <h3 class="card-title h5">Профессиональная переподготовка</h3>
+            <p class="card-text small text-muted mb-0">Получение новой квалификации на базе имеющего образования в дистанционном формате.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body">
+            <p class="text-primary mb-2"><i class="fa fa-shield fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="Охрана труда"></i></p>
+            <h3 class="card-title h5">Охрана труда</h3>
+            <p class="card-text small text-muted mb-0">Обучение по требованиям охраны труда для руководителей и специалистов организаций.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-5">
+    <h2 class="h4 mb-3">Актуальные программы</h2>
+    <div id="mainCarousel" class="carousel slide shadow rounded overflow-hidden" data-bs-ride="carousel" data-bs-interval="3000">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Слайд 1"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Слайд 2"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2" aria-label="Слайд 3"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="3" aria-label="Слайд 4"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="ratio ratio-21x9">
+            <img src="{% static 'img/slider/slide1.jpg' %}" class="object-fit-cover w-100 h-100 position-absolute top-0 start-0" alt="Повышение квалификации">
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="mb-1">Повышение квалификации</h5>
+            <p class="small mb-0">Актуальные программы для специалистов</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="ratio ratio-21x9">
+            <img src="{% static 'img/slider/slide2.jpg' %}" class="object-fit-cover w-100 h-100 position-absolute top-0 start-0" alt="Переподготовка">
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="mb-1">Профессиональная переподготовка</h5>
+            <p class="small mb-0">Новая специальность дистанционно</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="ratio ratio-21x9">
+            <img src="{% static 'img/slider/slide3.jpg' %}" class="object-fit-cover w-100 h-100 position-absolute top-0 start-0" alt="Охрана труда">
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="mb-1">Охрана труда</h5>
+            <p class="small mb-0">Соответствие нормативным требованиям</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="ratio ratio-21x9">
+            <img src="{% static 'img/slider/slide4.jpg' %}" class="object-fit-cover w-100 h-100 position-absolute top-0 start-0" alt="Развитие компетенций">
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="mb-1">Развитие компетенций</h5>
+            <p class="small mb-0">Непрерывное профессиональное образование</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev" data-bs-toggle="tooltip" data-bs-placement="top" title="Назад">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Назад</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next" data-bs-toggle="tooltip" data-bs-placement="top" title="Вперёд">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Вперёд</span>
+      </button>
+    </div>
+  </section>
+
+  {% if user.is_authenticated %}
+    <section class="mb-5">
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <h2 class="h4 mb-3">Как начать</h2>
+          <p class="text-muted small">Перейдите в личный кабинет и подайте заявку на обучение.</p>
+          <div class="d-flex flex-wrap gap-2">
+            <a class="btn btn-primary" href="{% url 'portal:cabinet' %}">Личный кабинет</a>
+            <a class="btn btn-outline-primary" href="{% url 'portal:application_new' %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Заполните форму заявки">Новая заявка</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% else %}
+    <section class="mb-5">
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <h2 class="h4 mb-3">Как начать</h2>
+          <p class="text-muted small">Зарегистрируйтесь, войдите в личный кабинет и подайте заявку на выбранный курс.</p>
+          <div class="d-flex flex-wrap gap-2">
+            <a class="btn btn-primary btn-lg" href="{% url 'portal:register' %}">Регистрация</a>
+            <a class="btn btn-outline-primary btn-lg" href="{% url 'portal:login' %}">Вход</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  <section class="mb-4">
+    <h2 class="h4 mb-3">Частые вопросы</h2>
+    <div class="accordion" id="faqAccordion">
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="true" aria-controls="faqOne">
+            Как записаться на курс?
+          </button>
+        </h3>
+        <div id="faqOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+          <div class="accordion-body small">Зарегистрируйтесь на портале, войдите в личный кабинет и создайте заявку, выбрав программу, дату начала и способ оплаты.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
+            Где посмотреть статус заявки?
+          </button>
+        </h3>
+        <div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body small">В личном кабинете в разделе «История заявок» отображаются все поданные заявки и их текущий статус.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree" aria-expanded="false" aria-controls="faqThree">
+            Когда можно оставить отзыв?
+          </button>
+        </h3>
+        <div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body small">После перевода заявки в статус «Обучение завершено» в кабинете появится возможность оставить отзыв о пройденной программе.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

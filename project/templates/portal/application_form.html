@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Новая заявка — Учусь.рф{% endblock %}
+{% block page_title %}Подача заявки на обучение{% endblock %}
+{% block page_lead %}
+  <p class="lead text-muted mb-0">Выберите курс, дату начала и способ оплаты.</p>
+{% endblock %}
+
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <div class="card shadow border-0">
+        <div class="card-header bg-primary text-white">
+          <h2 class="h5 mb-0">Форма заявки</h2>
+        </div>
+        <div class="card-body p-4">
+          <form method="post">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+              <div class="alert alert-danger">{% for e in form.non_field_errors %}{{ e }}{% endfor %}</div>
+            {% endif %}
+
+            <div class="mb-3">
+              <label class="form-label" for="id_course">Курс</label>
+              <select name="course" id="id_course" class="form-select{% if form.course.errors %} is-invalid{% endif %}">
+                {% for cat in categories_qs %}
+                  <optgroup label="{{ cat.name }}">
+                    {% for c in cat.courses.all %}
+                      <option value="{{ c.pk }}" {% if form.course.value|stringformat:'s' == c.pk|stringformat:'s' %}selected{% endif %}>{{ c.title }}</option>
+                    {% endfor %}
+                  </optgroup>
+                {% endfor %}
+              </select>
+              {% for e in form.course.errors %}<div class="invalid-feedback d-block">{{ e }}</div>{% endfor %}
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="{{ form.start_date.id_for_label }}">{{ form.start_date.label }}</label>
+              {{ form.start_date }}
+              {% for e in form.start_date.errors %}<div class="invalid-feedback d-block">{{ e }}</div>{% endfor %}
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="{{ form.payment_method.id_for_label }}">{{ form.payment_method.label }}</label>
+              {{ form.payment_method }}
+              {% for e in form.payment_method.errors %}<div class="invalid-feedback d-block">{{ e }}</div>{% endfor %}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Отправить заявку</button>
+            <a class="btn btn-link" href="{% url 'portal:cabinet' %}">Назад в кабинет</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

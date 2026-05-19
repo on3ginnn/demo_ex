@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Заявки — панель администратора{% endblock %}
+{% block page_title %}Управление заявками{% endblock %}
+{% block page_lead %}
+  <p class="lead text-muted mb-0">Фильтрация, сортировка и смена статусов заявок слушателей.</p>
+{% endblock %}
+
+{% block content %}
+  <div class="alert alert-light border mb-4 small">
+    <div class="d-flex flex-wrap gap-2 align-items-center">
+      <a class="btn btn-outline-secondary btn-sm" href="{% url 'portal:staff_logout' %}">Выход из панели</a>
+      <a class="btn btn-outline-primary btn-sm" href="{% url 'portal:home' %}">На сайт</a>
+      <span class="text-muted ms-md-2">Фильтры применяются автоматически.</span>
+    </div>
+  </div>
+
+  <div class="card shadow-sm border mb-4">
+    <div class="card-header bg-light fw-semibold">Фильтр заявок</div>
+    <div class="card-body">
+      <form id="staffFilterForm" class="row g-2 align-items-end" method="get" action="">
+        <div class="col-12 col-md-6 col-lg-3">
+          <label class="form-label small mb-0">Статус</label>
+          <select class="form-select form-select-sm js-filter-control" name="status">
+            <option value="">Все</option>
+            {% for val, label in status_choices %}
+              <option value="{{ val }}" {% if filters.status == val %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <label class="form-label small mb-0">Категория курса</label>
+          <select class="form-select form-select-sm js-filter-control" name="category">
+            <option value="">Все</option>
+            {% for c in categories %}
+              <option value="{{ c.code }}" {% if filters.category == c.code %}selected{% endif %}>{{ c.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <label class="form-label small mb-0">Оплата</label>
+          <select class="form-select form-select-sm js-filter-control" name="payment">
+            <option value="">Все</option>
+            {% for val, label in payment_choices %}
+              <option value="{{ val }}" {% if filters.payment == val %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <label class="form-label small mb-0">Поиск</label>
+          <input class="form-control form-control-sm js-filter-control" type="search" name="q" value="{{ filters.q }}" placeholder="Логин или email" autocomplete="off">
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <label class="form-label small mb-0">Сортировка</label>
+          <select class="form-select form-select-sm js-filter-control" name="ordering">
+            <option value="-created_at" {% if filters.ordering == '-created_at' %}selected{% endif %}>Сначала новые</option>
+            <option value="created_at" {% if filters.ordering == 'created_at' %}selected{% endif %}>Сначала старые</option>
+            <option value="status" {% if filters.ordering == 'status' %}selected{% endif %}>Статус А–Я</option>
+            <option value="-status" {% if filters.ordering == '-status' %}selected{% endif %}>Статус Я–А</option>
+            <option value="user__username" {% if filters.ordering == 'user__username' %}selected{% endif %}>Логин А–Я</option>
+            <option value="-user__username" {% if filters.ordering == '-user__username' %}selected{% endif %}>Логин Я–А</option>
+            <option value="course__title" {% if filters.ordering == 'course__title' %}selected{% endif %}>Курс А–Я</option>
+            <option value="-course__title" {% if filters.ordering == '-course__title' %}selected{% endif %}>Курс Я–А</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <button type="button" class="btn btn-link btn-sm js-filter-reset">Сбросить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="staffResults">
+    {% include "portal/staff/_results.html" %}
+  </div>
+
+  <div id="staffDashboardMeta" class="d-none" data-csrf="{{ csrf_token }}"></div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="staffToastContainer"></div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'js/staff_dashboard.js' %}"></script>
+{% endblock %}
